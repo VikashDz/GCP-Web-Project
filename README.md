@@ -1,9 +1,8 @@
-## Weather Application with ReactJS, Rapid API, Tailwind CSS, AWS, Docker, and Kubernetes
+## Weather Application with ReactJS, Rapid API, Tailwind CSS, AWS, and Docker
 
 ### Overview
 
-The Weather Application is a comprehensive web-based solution developed with ReactJS for the frontend, utilizing the Rapid API for weather data. The application is styled using Tailwind CSS and is deployed on AWS with Docker containers managed by Kubernetes.
-
+The Weather Application is a comprehensive web-based solution developed with ReactJS for the frontend, utilizing the Rapid API for weather data. The application is styled using Tailwind CSS and is deployed on AWS with Docker containers.
 ### Architecture
 
 - **Frontend (ReactJS):** The user interface is built using ReactJS components to provide an interactive and responsive experience.
@@ -12,7 +11,7 @@ The Weather Application is a comprehensive web-based solution developed with Rea
 
 - **Styling (Tailwind CSS):** Tailwind CSS is used to create a visually appealing and responsive design, offering a modern user interface.
 
-- **Deployment (AWS, Docker, Kubernetes):** The application is deployed on AWS using Docker containers. Kubernetes is employed for container orchestration, ensuring scalability and efficient management of the application.
+- **Deployment (AWS, Docker):** The application is deployed on AWS using Docker containers. 
 
 ### Features
 
@@ -33,9 +32,6 @@ The Weather Application is a comprehensive web-based solution developed with Rea
 5. **Docker Containerization:**
    - The application is containerized using Docker, allowing for consistent deployment across different environments.
 
-6. **Kubernetes Orchestration:**
-   - Kubernetes manages the deployment, scaling, and operation of Docker containers, ensuring optimal performance and resource utilization.
-
 ### Technology Stack
 
 - **Frontend:**
@@ -47,7 +43,6 @@ The Weather Application is a comprehensive web-based solution developed with Rea
 - **Deployment:**
   - AWS (EC2, S3, Route 53) for hosting and domain management.
   - Docker for containerization.
-  - Kubernetes for container orchestration.
 
 ### User Interaction
 
@@ -69,6 +64,3 @@ The Weather Application is a comprehensive web-based solution developed with Rea
 
 2. **AWS Deployment:**
    - AWS services are utilized for hosting and domain management.
-
-3. **Kubernetes Orchestration:**
-   - Docker containers are deployed and managed by Kubernetes for efficient scaling and resource utilization.
