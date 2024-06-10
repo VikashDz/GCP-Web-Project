@@ -22,7 +22,7 @@ steps:
     command: custom
     workingDir: '2-Tier Application'
     verbose: false
-    customCommand: 'npm run build'
+    customCommand: 'run build'
 
 - task: ArchiveFiles@2
   displayName: 'Archive File'
