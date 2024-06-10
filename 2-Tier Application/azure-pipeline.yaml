@@ -12,7 +12,7 @@ steps:
 - task: Npm@1
   displayName: 'npm install'
   inputs:
-    command: '$(Parameters.command)'
+    command: 'npm install'
     workingDir: '2-Tier Application'
     verbose: false
 
@@ -22,10 +22,10 @@ steps:
     command: custom
     workingDir: '2-Tier Application'
     verbose: false
-    customCommand: 'run build'
+    customCommand: 'npm run build'
 
 - task: ArchiveFiles@2
-  displayName: 'Archive $(Build.BinariesDirectory)'
+  displayName: 'Archive File'
   inputs:
     verbose: true
     quiet: true
