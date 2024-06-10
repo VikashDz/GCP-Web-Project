@@ -1,0 +1,37 @@
+pool:
+  name: Azure Pipelines
+variables:
+  command: 'install'
+
+steps:
+- task: NodeTool@0
+  displayName: 'Use Node 20.x'
+  inputs:
+    versionSpec: 20.x
+
+- task: Npm@1
+  displayName: 'npm install'
+  inputs:
+    command: '$(Parameters.command)'
+    workingDir: '2-Tier Application'
+    verbose: false
+
+- task: Npm@1
+  displayName: 'npm run build'
+  inputs:
+    command: custom
+    workingDir: '2-Tier Application'
+    verbose: false
+    customCommand: 'run build'
+
+- task: ArchiveFiles@2
+  displayName: 'Archive $(Build.BinariesDirectory)'
+  inputs:
+    verbose: true
+    quiet: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: '2-Tier Application'
+
