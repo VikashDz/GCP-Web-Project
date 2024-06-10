@@ -12,12 +12,12 @@ steps:
 - task: Npm@1
   displayName: 'npm install'
   inputs:
-    command: 'npm install'
+    command: 'install'
     workingDir: '2-Tier Application'
     verbose: false
 
 - task: Npm@1
-  displayName: 'npm run build'
+  displayName: 'run build'
   inputs:
     command: custom
     workingDir: '2-Tier Application'
