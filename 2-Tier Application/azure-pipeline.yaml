@@ -1,7 +1,8 @@
+trigger:
+- test
+
 pool:
-  name: Azure Pipelines
-# variables:
-#   command: 'install'
+  vmImage: 'ubuntu-latest'
 
 steps:
 - task: NodeTool@0
