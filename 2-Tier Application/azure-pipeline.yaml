@@ -1,7 +1,7 @@
 pool:
   name: Azure Pipelines
-variables:
-  command: 'install'
+# variables:
+#   command: 'install'
 
 steps:
 - task: NodeTool@0
