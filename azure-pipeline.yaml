@@ -17,42 +17,50 @@ pr:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- task: NodeTool@0
-  displayName: 'Use Node 20.x'
-  inputs:
-    versionSpec: 20.x
+stages:
+- stage: Build
+  displayName: 'Build Stage'
+  jobs:
+  - job: Build
+    displayName: 'Build Job'
+    steps:
+    - task: NodeTool@0
+      displayName: 'Use Node 20.x'
+      inputs:
+        versionSpec: 20.x
 
-- task: Npm@1
-  displayName: 'npm install'
-  inputs:
-    command: 'install'
-    workingDir: ''
-    verbose: false
+    - task: Npm@1
+      displayName: 'npm install'
+      inputs:
+        command: 'install'
+        workingDir: ''
+        verbose: false
 
-- task: Npm@1
-  displayName: 'run build'
-  inputs:
-    command: custom
-    workingDir: ''
-    verbose: false
-    customCommand: 'run build'
+    - task: Npm@1
+      displayName: 'run build'
+      inputs:
+        command: custom
+        workingDir: ''
+        verbose: false
+        customCommand: 'run build'
 
-- task: ArchiveFiles@2
-  displayName: 'Archive File'
-  inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)/build'
-    includeRootFolder: true
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    replaceExistingArchive: true
-    verbose: true
-    quiet: true
+    - task: ArchiveFiles@2
+      displayName: 'Archive Files'
+      inputs:
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/build'
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/build.zip'
+        replaceExistingArchive: true
+        verbose: true
+        quiet: true
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drop'
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact: drop'
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)/build.zip'
+        ArtifactName: 'drop'
+
 
 # =====================================================================================================================================
 # trigger:
