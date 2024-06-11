@@ -1,5 +1,18 @@
 trigger:
-- test
+  branches:
+    include:
+      - main
+  paths:
+    exclude:
+      - azure-pipelines.yaml
+
+pr:
+  branches:
+    include:
+      - main
+  paths:
+    exclude:
+      - azure-pipelines.yaml
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -39,11 +52,11 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
   inputs:
-    PathtoPublish: ''
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
 
 # =====================================================================================================================================
 # trigger:
-# - test
+# - main
 
 # pool:
 #   vmImage: 'ubuntu-latest'
