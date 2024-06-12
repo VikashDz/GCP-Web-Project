@@ -179,8 +179,10 @@ stages:
                 - task: DownloadPipelineArtifact@2
                   displayName: 'Download Artifact'
                   inputs:
-                    artifact: 'drop'
-                    patterns: '**/*.zip'
+                    buildType: 'current'
+                    artifactName: 'drop'
+                    itemPattern: 
+                    targetPath: '$(Pipeline.Workspace)'
 
                 - script: ls -R $(Pipeline.Workspace)
                   displayName: 'List files in workspace'
@@ -192,7 +194,7 @@ stages:
                     azureSubscription: 'Free Trial (c76eba7d-3791-4b1a-ac0a-e3914e169a45)'
                     appType: 'webAppLinux'
                     WebAppName: 'react-web-app-1'
-                    packageForLinux: '$(Pipeline.Workspace)/drop/build.zip'
+                    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
                     RuntimeStack: 'NODE|20-lts'
                     
   # - stage: DeployToProduction
