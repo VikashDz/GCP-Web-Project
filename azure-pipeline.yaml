@@ -162,12 +162,12 @@ stages:
 
 # Approval Checks
 
-approvals:
-- stage: DeployToProduction
-  checks:
-  - approval: 
-      requests: 
-      - users:
-        - vikash.indoqubix@gmail.com 
+# approvals:
+# - stage: DeployToProduction
+#   checks:
+#   - approval: 
+#       requests: 
+#       - users:
+#         - vikash.indoqubix@gmail.com 
   
 
