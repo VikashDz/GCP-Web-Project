@@ -186,32 +186,32 @@ stages:
                     azureSubscription: 'Free Trial (c76eba7d-3791-4b1a-ac0a-e3914e169a45)'
                     appType: 'webAppLinux'
                     WebAppName: 'react-web-app-1'
-                    packageForLinux: '$(Pipeline.Workspace)/drop/build.zip'
+                    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
                     RuntimeStack: 'NODE|20-lts'
 
-  - stage: DeployToProduction
-    displayName: 'Deploy to Production'
-    dependsOn: DeployToDev
-    condition: succeeded()
-    jobs:
-      - deployment: Production
-        displayName: 'Deploy to Production'
-        environment: 'production'
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - script: echo "Waiting for approval before deploying to Production"
+  # - stage: DeployToProduction
+  #   displayName: 'Deploy to Production'
+  #   dependsOn: DeployToDev
+  #   condition: succeeded()
+  #   jobs:
+  #     - deployment: Production
+  #       displayName: 'Deploy to Production'
+  #       environment: 'production'
+  #       strategy:
+  #         runOnce:
+  #           deploy:
+  #             steps:
+  #               - script: echo "Waiting for approval before deploying to Production"
 
-                - download: current
-                  artifact: drop
+  #               - download: current
+  #                 artifact: drop
 
-                - task: AzureRmWebAppDeployment@4
-                  displayName: 'Deploy to Production Web App'
-                  inputs:
-                    ConnectionType: 'AzureRM'
-                    azureSubscription: 'Free Trial (c76eba7d-3791-4b1a-ac0a-e3914e169a45)'
-                    appType: 'webAppLinux'
-                    WebAppName: 'react-web-app-production'
-                    packageForLinux: '$(Pipeline.Workspace)/drop/build.zip'
-                    RuntimeStack: 'NODE|20-lts'
+  #               - task: AzureRmWebAppDeployment@4
+  #                 displayName: 'Deploy to Production Web App'
+  #                 inputs:
+  #                   ConnectionType: 'AzureRM'
+  #                   azureSubscription: 'Free Trial (c76eba7d-3791-4b1a-ac0a-e3914e169a45)'
+  #                   appType: 'webAppLinux'
+  #                   WebAppName: 'react-web-app-production'
+  #                   packageForLinux: '$(Pipeline.Workspace)/drop/build.zip'
+  #                   RuntimeStack: 'NODE|20-lts'
