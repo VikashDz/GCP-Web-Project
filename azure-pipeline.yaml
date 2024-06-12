@@ -94,9 +94,15 @@ stages:
           runOnce:
             deploy:
               steps:
-                - script: echo "Waiting for approval before deploying to Production"
-                - download: current
-                  artifact: drop
+                - task: DownloadPipelineArtifact@2
+                  displayName: 'Download Artifact'
+                  inputs:
+                    buildType: 'current'
+                    artifactName: 'drop'
+                    targetPath: '$(System.DefaultWorkingDirectory)'
+
+                - script: ls -R $(Pipeline.Workspace)
+                  displayName: 'List files in workspace'
 
                 - task: AzureRmWebAppDeployment@4
                   displayName: 'Deploy to Production Web App'
