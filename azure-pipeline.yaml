@@ -144,7 +144,7 @@ stages:
 
 - stage: DeployToProduction
   displayName: 'Deploy to Production'
-  dependsOn: DeployToStaging
+  dependsOn: DeployToDev
   condition: succeeded()
   jobs:
   - deployment: Production
