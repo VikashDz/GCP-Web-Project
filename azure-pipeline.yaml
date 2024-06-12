@@ -72,7 +72,7 @@ stages:
                     azureSubscription: 'Free Trial (c76eba7d-3791-4b1a-ac0a-e3914e169a45)'
                     appType: 'webAppLinux'
                     WebAppName: 'react-web-app-1'
-                    packageForLinux: '$(Build.ArtifactStagingDirectory)/drop/build.zip'
+                    packageForLinux: '$(Pipeline.Workspace)/drop/build.zip'
                     RuntimeStack: 'NODE|20-lts'
 
   - stage: DeployToProduction
@@ -99,5 +99,5 @@ stages:
                     azureSubscription: 'Free Trial (c76eba7d-3791-4b1a-ac0a-e3914e169a45)'
                     appType: 'webAppLinux'
                     WebAppName: 'react-web-app-production'
-                    packageForLinux: '$(Build.ArtifactStagingDirectory)/drop/build.zip'
+                    packageForLinux: '$(Pipeline.Workspace)/drop/build.zip'
                     RuntimeStack: 'NODE|20-lts'
