@@ -164,37 +164,37 @@ stages:
               PathtoPublish: '$(Build.ArtifactStagingDirectory)/build.zip'
               ArtifactName: 'drop'
 
-  - stage: DeployToDev
-    displayName: 'Deploy to Dev'
-    dependsOn: Build
-    condition: succeeded()
-    jobs:
-      - deployment: Dev
-        displayName: 'Deploy to Dev'
-        environment: 'dev'
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - task: DownloadPipelineArtifact@2
-                  displayName: 'Download Artifact'
-                  inputs:
-                    buildType: 'current'
-                    artifactName: 'drop'
-                    targetPath: '$(System.DefaultWorkingDirectory)'
+  # - stage: DeployToDev
+  #   displayName: 'Deploy to Dev'
+  #   dependsOn: Build
+  #   condition: succeeded()
+  #   jobs:
+  #     - deployment: Dev
+  #       displayName: 'Deploy to Dev'
+  #       environment: 'dev'
+  #       strategy:
+  #         runOnce:
+  #           deploy:
+  #             steps:
+  #               - task: DownloadPipelineArtifact@2
+  #                 displayName: 'Download Artifact'
+  #                 inputs:
+  #                   buildType: 'current'
+  #                   artifactName: 'drop'
+  #                   targetPath: '$(System.DefaultWorkingDirectory)'
 
-                - script: ls -R $(Pipeline.Workspace)
-                  displayName: 'List files in workspace'
+  #               - script: ls -R $(Pipeline.Workspace)
+  #                 displayName: 'List files in workspace'
 
-                - task: AzureRmWebAppDeployment@4
-                  displayName: 'Deploy to Dev Web App'
-                  inputs:
-                    ConnectionType: 'AzureRM'
-                    azureSubscription: 'Free Trial (c76eba7d-3791-4b1a-ac0a-e3914e169a45)'
-                    appType: 'webAppLinux'
-                    WebAppName: 'react-web-app-1'
-                    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
-                    RuntimeStack: 'NODE|20-lts'
+  #               - task: AzureRmWebAppDeployment@4
+  #                 displayName: 'Deploy to Dev Web App'
+  #                 inputs:
+  #                   ConnectionType: 'AzureRM'
+  #                   azureSubscription: 'Free Trial (c76eba7d-3791-4b1a-ac0a-e3914e169a45)'
+  #                   appType: 'webAppLinux'
+  #                   WebAppName: 'react-web-app-1'
+  #                   packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+  #                   RuntimeStack: 'NODE|20-lts'
                     
   # - stage: DeployToProduction
   #   displayName: 'Deploy to Production'
